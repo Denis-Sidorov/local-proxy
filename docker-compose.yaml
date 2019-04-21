@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+
+  server:
+    build: ./docker/nginx
+    image: local-proxy
+    container_name: proxy
+    ports:
+      - "80:80"
+    networks:
+      - proxy
+    restart: always
+
+networks:
+  proxy:
+    ipam:
+      config:
+        - subnet: "192.168.80.0/24"
+    name: proxy
